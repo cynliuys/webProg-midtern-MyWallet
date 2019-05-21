@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font: 14px 'Helvetica Neue', Helvetica,sans-serif;
+  background: rgba(55, 154, 147, 0.315);
+  overflow: hidden;
+}
+
+.my-wallet__root {
+  margin: 0 auto;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1em;
+  color: #656464;
+  font-weight: 300;
+}
+
+.my-wallet__header {
+  width: 100vw;
+  margin-bottom: 1em;
+  /*background-color: rgba(113, 113, 113, 0.178);*/
+
+}
+
+.my-wallet__main {
+  border: 1px solid rgba(0, 0, 0, 0.089);
+  background: rgb(235, 235, 235);
+  width: 50em;
+}
+
+.my-wallet__top-bar{
+  display: flex;
+  justify-content: center;
+}
+
+.my-wallet__list {
+  font-size: 23px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* 5*5=25 */
+  max-height: 20em;
+  overflow: scroll;
+  background: rgb(245, 245, 245);
+
+}
+
+.my-wallet__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 3em;
+  padding: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.089);
+  border-top: 0.5px solid rgba(0, 0, 0, 0.089);
+}
