@@ -6,21 +6,17 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import classNames from 'classnames';
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import SwipeableViews from 'react-swipeable-views';
 import Typography from '@material-ui/core/Typography';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import { images1, images2 } from './Image';
 
-import AppBar from '@material-ui/core/AppBar';
 
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import InputLabel from '@material-ui/core/InputLabel';
+
 
 function TabContainer({ children, dir }) {
     return (
@@ -52,12 +48,6 @@ export const styles = theme => ({
         marginRight: theme.spacing.unit,
         width: 200,
     },
-    dense: {
-      marginTop: 16,
-    },
-    menu: {
-      width: 600,
-    },
     formFirst: {
 
     },
@@ -66,25 +56,66 @@ export const styles = theme => ({
         margin: 'auto',
         width: 550,
     },
+    image: {
+        position: 'relative',
+        height: 55,
+        [theme.breakpoints.down('xs')]: {
+            width: '100% !important', // Overrides inline-style
+            height: 1,
+        },
+        '&:hover, &$focusVisible': {
+            zIndex: 1,
+            '& $imageBackdrop': {
+                opacity: 0.25,
+            },
+            '& $imageMarked': {
+                opacity: 0,
+            },
 
-    root: {
-        backgroundColor: theme.palette.background.paper,
-        width: 500,
+        },
+    },
+    focusVisible: {},
+    imageButton: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: theme.palette.common.white,
+    },
+    imageSrc: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 40%',
+    },
+    imageBackdrop: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        backgroundColor: theme.palette.common.black,
+        opacity: 0,
+        transition: theme.transitions.create('opacity'),
+    },
+
+    imageMarked: {
+        height: 3,
+        width: 18,
+        backgroundColor: theme.palette.common.white,
+        position: 'absolute',
+        bottom: -2,
+        left: 'calc(50% - 9px)',
+        transition: theme.transitions.create('opacity'),
     },
 });
-export const maptable = [
-    {
-      value: 'gain',
-      label: 'Income',
-    },
-    {
-      value: 'pay',
-      label: 'Expenses',
-    },
-];
-
-
-
 
 class AddWindow extends React.Component{
     constructor(props) {
@@ -96,21 +127,27 @@ class AddWindow extends React.Component{
             gainOrPay: 'pay',
             date : 0,
             value: 0,
+            value2 : 0
         };
+        this.preOpen = false;
     }
+
+    handleChangeType = (event, v) => {
+        this.setState({ value2 : v });
+    };
     
-      handleChangeBar = (event, v) => {
+    handleChangeBar = (event, v) => {
         let temp = "";
         console.log("v : ", v);/////////////////////
         if(v === 0){temp = "pay";}
         else{ temp = "gain;";}
         this.setState({
             value : v,
-        gainOrPay : temp
+            gainOrPay : temp
         });
-      };
+    };
     
-      handleChangeIndex = index => {
+    handleChangeIndex = index => {
         console.log("index : ", index);/////////////////////
         let temp = "";
         if(index === 0){temp = "pay";}
@@ -119,7 +156,7 @@ class AddWindow extends React.Component{
             value: index,
             gainOrPay : temp
         });
-      };
+    };
 
     handleChange = name => event => {
         this.setState({
@@ -127,11 +164,35 @@ class AddWindow extends React.Component{
         });
     };
 
+    openUpdate = () => {
+        if(this.props.open){
+            if(!this.preOpen){
+                this.setState({
+                    type : 'eat',
+                    detail: '',
+                    money: 0,
+                    gainOrPay: 'pay',
+                    date : 0,
+                    value: 0,
+                });
+                this.preOpen = true;
+            }
+            
+            return  true;
+        }
+        else{
+            console.log("OUT Call me  close")
+            this.preOpen = false;
+            return false;
+        }
+    }
+
     render(){
         const { classes, theme } = this.props;
+
         return(
             <Dialog
-                open={this.props.open}
+                open={this.openUpdate()}
                 onClose={this.handleClose}
                 maxWidth='sm' fullWidth={true}
             >
@@ -151,9 +212,44 @@ class AddWindow extends React.Component{
                         index={this.state.value}
                         onChangeIndex={this.handleChangeIndex}
                     >
-                        <TabContainer dir={theme.direction}>Item One</TabContainer>
-                        <TabContainer dir={theme.direction}>Item Two</TabContainer>
-                    </SwipeableViews>
+                        <TabContainer dir={theme.direction}></TabContainer>
+                        <TabContainer dir={theme.direction}></TabContainer>
+                    </SwipeableViews> 
+                    {/*
+                    <Tabs
+                        variant="scrollable"
+                        scrollButtons="auto"
+                    >
+
+                    {images1.map(image => (
+                        <ButtonBase
+                            focusRipple
+                            key={image.title}
+                            className={classes.image}
+                            focusVisibleClassName={classes.focusVisible}
+                            style={{width: "10%"}}
+                            >
+                            <span
+                                className={classes.imageSrc}
+                                style={{
+                                backgroundImage: `url(${image.url})`,
+                                }}
+                            />
+                            <span className={classes.imageBackdrop} />
+                            <span className={classes.imageButton}>
+                                <Typography
+                                component="span"
+                                variant="subtitle1"
+                                color="inherit"
+                                className={classes.imageTitle}
+                                >
+                                <span className={classes.imageMarked} />
+                                </Typography>
+                            </span>
+                        </ButtonBase>
+                    ))}
+                    </Tabs>
+                    */}
 
                     <TextField
                         required
@@ -163,6 +259,9 @@ class AddWindow extends React.Component{
                         onChange={this.handleChange('money')}
                         margin="normal"
                         variant="outlined"
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">$ </InputAdornment>,
+                        }}
                     />
                     <form className={classes.formSecond}>
                     

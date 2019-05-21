@@ -11,8 +11,7 @@ import ImageIcon from '@material-ui/icons/Image';
 
 const styles = theme => ({
     root: {
-      width: '100%',
-      fontSize : '80px'
+        width: '100%',
     },
 });
 
@@ -70,18 +69,6 @@ class Item extends React.Component{
                     {this.money}
                 </div>
             </ListItem>
-
-
-
-            // <li className="my-wallet__item item-pay" id={this.props.id}>
-            //     <img src={this.pic} className="my-wallet__item-img" id={this.props.id}/>
-            //     <div className="my-wallet__item-detail" id={this.props.id}>
-            //         {this.detail}
-            //     </div>
-            //     <div className={this.props.gainOrPay+" my-wallet__item-money"} id={this.props.id}>
-            //         {this.money}
-            //     </div>
-            // </li>
         )
     }
 }

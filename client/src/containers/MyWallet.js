@@ -59,7 +59,6 @@ class MyWallet extends React.Component{
                 newNext +=88;
             }
         }
-        console.log(this.url);
         fetch(this.url, {method: "GET"})
         .then(res => res.json())
         .then(data =>{
@@ -96,7 +95,6 @@ class MyWallet extends React.Component{
         })
         .catch((err) => console.log('Error in postNewItem() :', err))
         .then(res => {
-            console.log(res.text());
             this.url = "http://localhost:3001/"+this.state.month;
             fetch(this.url, {method: "GET"})
             .then(res => res.json())
@@ -125,7 +123,6 @@ class MyWallet extends React.Component{
     }
 
     render(){
-        console.log("render");
         return(
             <BrowserRouter>
                 <div className="my-wallet__root">

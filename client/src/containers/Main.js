@@ -12,7 +12,6 @@ class Main extends React.Component{
 
     splitData = () => {
         if(this.props.dataGroup){
-            console.log(this.props.dataGroup);
             this.balance = this.props.dataGroup[0];
         }
         else{
