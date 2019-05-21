@@ -1,5 +1,7 @@
 #   Readme : midtern_MyWallet 
 
+![image](https://github.com/CynthiaYLiu/midtern_MyWallet/blob/master/title_pic.png)
+
 ### Introduction
 記帳軟體，可以記錄支出或收入的時間、金額及分類，並且可以照時間排序查詢每月花費集結餘。
 
