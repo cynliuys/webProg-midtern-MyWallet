@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { classify } from './Class';
+import { images } from './Image';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -33,10 +33,11 @@ class Item extends React.Component{
             let temp = this.props.money;
             this.money = "$"+temp;
         }
+        this.pic="";
     }
 
     init = () => {
-        this.pic = classify(this.props.className);
+        this.pic = images[this.props.className];
         if(this.props.children){
             this.detail = this.props.className+" - "+this.props.children;
         }
