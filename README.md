@@ -1,4 +1,4 @@
-#   Readme : midtern_MyWallet 
+#  2019 Web programming assignment: MyWallet
 
 ![image](https://github.com/CynthiaYLiu/midtern_MyWallet/blob/master/client/src/img/title_pic.png)
 
