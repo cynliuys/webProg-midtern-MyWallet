@@ -3,7 +3,7 @@
 ![image](https://github.com/CynthiaYLiu/midtern_MyWallet/blob/master/client/src/img/title_pic.png)
 
 ### Introduction
-記帳軟體，可以記錄支出或收入的時間、金額及分類，並且可以照時間排序查詢每月花費集結餘。
+Efficiently tracking each expense. You can record expense or income with time, amount and category. It can be sorted by timeline and shows the balance.
 
 ### Not Deployed
 
